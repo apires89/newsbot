@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'facebook-messenger', "0.8.0"
 gem 'dotenv-rails'
+gem 'faraday'
 
 group :development, :test do
   gem 'binding_of_caller'

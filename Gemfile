@@ -4,7 +4,6 @@ ruby '2.3.3'
 gem 'rails', '5.0.1'
 gem 'puma'
 gem 'pg'
-gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
 
@@ -15,7 +14,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
-gem 'facebook-messenger'
+gem 'facebook-messenger', "0.8.0"
 gem 'dotenv-rails'
 
 group :development, :test do

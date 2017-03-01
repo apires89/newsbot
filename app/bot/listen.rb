@@ -22,7 +22,7 @@ end
 Bot.on :postback do |postback|
 
   brain = Brain.new
-  brain.set_postback(message)
+  brain.set_postback(postback)
   brain.start_typing
   brain.create_log
   brain.process_postback
@@ -30,3 +30,14 @@ Bot.on :postback do |postback|
 
 
 end
+
+Facebook::Messenger::Thread.set(
+  setting_type: "call_to_actions",
+  thread_state: "new_thread",
+  call_to_actions:[
+    {
+    payload: "new_thread"
+    }
+  ]
+    )
+

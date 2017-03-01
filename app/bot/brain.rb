@@ -28,13 +28,26 @@ class Brain
 
   def process_message
     if text.present?
-      send_text("HI #{user.first_name}")
+      send_text("Hi #{user.first_name}, i am the bot that loves you!")
     else
       send_text("Sorry, I don't handle attachments")
     end
   end
 
   def process_postback
+    resp = Postback.new(postback.payload, user.id).process
+
+    resp.each do |r|
+      case r[:type]
+      when "text"
+        send_text(r[:text])
+      when "generic"
+        send_generic_template(r[:elements])
+      else
+        fail "Invalid type"
+      end
+    end
+
   end
 
   def create_log
@@ -69,6 +82,21 @@ class Brain
   text.present? ? "text" : attachments.first["type"]
 
  end
+
+ def send_generic_template(elements)
+  Bot.deliver(
+    recipient: sender,
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: elements
+        }
+      }
+    }
+  )
+end
 
  def user
   @user ||= set_user
